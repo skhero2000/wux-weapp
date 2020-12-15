@@ -88,7 +88,13 @@ baseComponent({
     },
     observers: {
         src(newVal) {
-            this.updated(newVal)
+            const { src } = this.data;
+            if(newVal && newVal === src){
+                this.onLoad({detail:newVal})
+            }else{
+                this.updated(newVal)
+            }
+          
         },
         ['width, height'](...args) {
             this.updateStyle(...args)
